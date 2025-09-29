@@ -1,0 +1,2059 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     91575,       2051]
+NotebookOptionsPosition[     86657,       1959]
+NotebookOutlinePosition[     87096,       1976]
+CellTagsIndexPosition[     87053,       1973]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"<<", 
+  "\"\<C:\\\\Users\\\\mechm\\\\Desktop\\\\Introduction To \
+Robotics\\\\Mathematica\\\\ToMatlab.m\>\""}]], "Input",
+ CellChangeTimes->{{3.934883952136716*^9, 3.934883980887611*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"afb0b93a-1c6e-49e1-a83c-ab2688509091"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "ToMatlab"}]], "Input",
+ CellLabel->"In[54]:=",ExpressionUUID->"e9c8defd-22d3-453b-815f-2624259dcddc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"ToMatlab[expr]  converts the expression  expr  into \
+matlab syntax and returns it as a String.\\nToMatlab[expr, name]  returns an \
+assignment of  expr  into  name as a String. name can be also a more \
+complicated string, e.g., ToMatlab[If[t,a,b],\\\"function \
+y=iffun(t,a,b)\\\\ny\\\"].\\nThe special symbol Colon can be used to denote \
+the matlab colon operator :, and Colon[a,b] for a:b, Colon[a,b,c] for \
+a:b:c.\\nSee also  WriteMatlab  and  PrintMatlab.\\nAll functions accept an \
+optional last argument that is the maximum line width.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "ToMatlab", "[", "MatlabUtils`ToMatlab`Private`e_", "]"}],
+                     ":=", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`foldlines", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`e", "]"}], 
+                    "<>", "\<\";\\n\"\>"}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`name", "]"}], 
+                    "<>", "\<\"=\"\>", "<>", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`foldlines", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`e", "]"}], 
+                    "<>", "\<\";\\n\"\>"}], "]"}]}], "/;", 
+                    RowBox[{"!", 
+                    RowBox[{
+                    "NumberQ", "[", "MatlabUtils`ToMatlab`Private`name", 
+                    "]"}]}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "MatlabUtils`ToMatlab`Private`s", "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`SetMargin", "[", 
+                    "MatlabUtils`ToMatlab`Private`margin", "]"}], ";", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`s", "=", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`foldlines", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`e", "]"}], 
+                    "<>", "\<\";\\n\"\>"}], "]"}]}], ";", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`RestoreMargin", "[", "]"}], 
+                    ";", "MatlabUtils`ToMatlab`Private`s"}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "MatlabUtils`ToMatlab`Private`s", "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`SetMargin", "[", 
+                    "MatlabUtils`ToMatlab`Private`margin", "]"}], ";", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`s", "=", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`name", "]"}], 
+                    "<>", "\<\"=\"\>", "<>", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`foldlines", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`ToMatlabaux", "[", 
+                    "MatlabUtils`ToMatlab`Private`e", "]"}], 
+                    "<>", "\<\";\\n\"\>"}], "]"}]}]}], ";", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`RestoreMargin", "[", "]"}], 
+                    ";", "MatlabUtils`ToMatlab`Private`s"}]}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"MatlabUtils`ToMatlab`ToMatlab\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"ToMatlab[expr]  converts the expression  expr  into \
+matlab syntax and returns it as a String.\\nToMatlab[expr, name]  returns an \
+assignment of  expr  into  name as a String. name can be also a more \
+complicated string, e.g., ToMatlab[If[t,a,b],\\\"function \
+y=iffun(t,a,b)\\\\ny\\\"].\\nThe special symbol Colon can be used to denote \
+the matlab colon operator :, and Colon[a,b] for a:b, Colon[a,b,c] for \
+a:b:c.\\nSee also  WriteMatlab  and  PrintMatlab.\\nAll functions accept an \
+optional last argument that is the maximum line width.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "ToMatlab[expr]  converts the expression  expr  into matlab syntax and \
+returns it as a String.\nToMatlab[expr, name]  returns an assignment of  expr \
+ into  name as a String. name can be also a more complicated string, e.g., \
+ToMatlab[If[t,a,b],\"function y=iffun(t,a,b)\\ny\"].\nThe special symbol \
+Colon can be used to denote the matlab colon operator :, and Colon[a,b] for \
+a:b, Colon[a,b,c] for a:b:c.\nSee also  WriteMatlab  and  PrintMatlab.\nAll \
+functions accept an optional last argument that is the maximum line width.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, MatlabUtils`ToMatlab`ToMatlab, {MatlabUtils`ToMatlab`ToMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]]] :> MatlabUtils`ToMatlab`Private`foldlines[
+         StringJoin[
+          MatlabUtils`ToMatlab`Private`ToMatlabaux[
+          MatlabUtils`ToMatlab`Private`e], ";\n"]], 
+       MatlabUtils`ToMatlab`ToMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]]] :> Condition[
+         StringJoin[
+          MatlabUtils`ToMatlab`Private`ToMatlabaux[
+          MatlabUtils`ToMatlab`Private`name], "=", 
+          MatlabUtils`ToMatlab`Private`foldlines[
+           StringJoin[
+            MatlabUtils`ToMatlab`Private`ToMatlabaux[
+            MatlabUtils`ToMatlab`Private`e], ";\n"]]], 
+         Not[
+          NumberQ[MatlabUtils`ToMatlab`Private`name]]], 
+       MatlabUtils`ToMatlab`ToMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> 
+       Block[{MatlabUtils`ToMatlab`Private`s}, 
+         MatlabUtils`ToMatlab`Private`SetMargin[
+          MatlabUtils`ToMatlab`Private`margin]; 
+         MatlabUtils`ToMatlab`Private`s = 
+          MatlabUtils`ToMatlab`Private`foldlines[
+            StringJoin[
+             MatlabUtils`ToMatlab`Private`ToMatlabaux[
+             MatlabUtils`ToMatlab`Private`e], ";\n"]]; 
+         MatlabUtils`ToMatlab`Private`RestoreMargin[]; 
+         MatlabUtils`ToMatlab`Private`s], MatlabUtils`ToMatlab`ToMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> 
+       Block[{MatlabUtils`ToMatlab`Private`s}, 
+         MatlabUtils`ToMatlab`Private`SetMargin[
+          MatlabUtils`ToMatlab`Private`margin]; 
+         MatlabUtils`ToMatlab`Private`s = StringJoin[
+            MatlabUtils`ToMatlab`Private`ToMatlabaux[
+            MatlabUtils`ToMatlab`Private`name], "=", 
+            MatlabUtils`ToMatlab`Private`foldlines[
+             StringJoin[
+              MatlabUtils`ToMatlab`Private`ToMatlabaux[
+              MatlabUtils`ToMatlab`Private`e], ";\n"]]]; 
+         MatlabUtils`ToMatlab`Private`RestoreMargin[]; 
+         MatlabUtils`ToMatlab`Private`s]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "MatlabUtils`ToMatlab`ToMatlab"], False]]], "Output",
+ CellChangeTimes->{3.9348839271626782`*^9, 3.9348839841298103`*^9, 
+  3.934884369277499*^9},
+ CellLabel->"Out[54]=",ExpressionUUID->"4fe32cc6-96b2-4a84-8dce-5354b2bf960d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "PrintMatlab"}]], "Input",
+ CellLabel->"In[55]:=",ExpressionUUID->"ca6013d5-d5c4-4b80-88ab-9614721a5058"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"PrintMatlab[expr]  or  PrintMatlab[expr, name]  is \
+like  ToMatlab but instead of returning the String, it is printed on the \
+screen. See also  ToMatlab  and  WriteMatlab.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "PrintMatlab", "[", "MatlabUtils`ToMatlab`Private`e_", 
+                    "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Print", "[", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`e", ",", "60"}], 
+                    "]"}], "]"}], ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"PrintMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Print", "[", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", "60"}], "]"}], 
+                    "]"}], ";"}], ")"}], "/;", 
+                    RowBox[{"!", 
+                    RowBox[{
+                    "NumberQ", "[", "MatlabUtils`ToMatlab`Private`name", 
+                    "]"}]}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"PrintMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Print", "[", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}], "]"}], 
+                    ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"PrintMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Print", "[", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}], "]"}], 
+                    ";"}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"MatlabUtils`ToMatlab`PrintMatlab\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"PrintMatlab[expr]  or  PrintMatlab[expr, name]  is \
+like  ToMatlab but instead of returning the String, it is printed on the \
+screen. See also  ToMatlab  and  WriteMatlab.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "PrintMatlab[expr]  or  PrintMatlab[expr, name]  is like  ToMatlab but \
+instead of returning the String, it is printed on the screen. See also  \
+ToMatlab  and  WriteMatlab.", "Documentation" -> None, "OwnValues" -> None, 
+    "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, MatlabUtils`ToMatlab`PrintMatlab, {
+      MatlabUtils`ToMatlab`PrintMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]]] :> (Print[
+          MatlabUtils`ToMatlab`ToMatlab[MatlabUtils`ToMatlab`Private`e, 60]]; 
+        Null), MatlabUtils`ToMatlab`PrintMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]]] :> Condition[Print[
+           MatlabUtils`ToMatlab`ToMatlab[
+           MatlabUtils`ToMatlab`Private`e, MatlabUtils`ToMatlab`Private`name, 
+            60]]; Null, 
+         Not[
+          NumberQ[MatlabUtils`ToMatlab`Private`name]]], 
+       MatlabUtils`ToMatlab`PrintMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (Print[
+          MatlabUtils`ToMatlab`ToMatlab[
+          MatlabUtils`ToMatlab`Private`e, 
+           MatlabUtils`ToMatlab`Private`margin]]; Null), 
+       MatlabUtils`ToMatlab`PrintMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (Print[
+          MatlabUtils`ToMatlab`ToMatlab[
+          MatlabUtils`ToMatlab`Private`e, MatlabUtils`ToMatlab`Private`name, 
+           MatlabUtils`ToMatlab`Private`margin]]; Null)}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "MatlabUtils`ToMatlab`PrintMatlab"], False]]], "Output",
+ CellChangeTimes->{3.9348839273199534`*^9, 3.9348839844148808`*^9, 
+  3.934884369486391*^9},
+ CellLabel->"Out[55]=",ExpressionUUID->"e486ca2b-8a30-4cb5-a109-0363a07699db"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "WriteMatlab"}]], "Input",
+ CellLabel->"In[56]:=",ExpressionUUID->"0b3cb294-b8a0-4337-888b-aabddddb758f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"WriteMatlab[expr, file]  or  WriteMatlab[expr, \
+file, name] Writes the  expr  in matlab form into the given file. The second \
+form makes this an assignment into the variable  name.\\nExample: f = \
+OpenWrite[\\\"file.m\\\"]; WriteMatlab[Cos[x]-x, f, y]; Close[f];\\nThe file \
+argument can also be a String that gives the name of the file: \
+WriteMatlab[Cos[x]-x, \\\"file.m\\\", y]; achieves the same result as the \
+previous example (but this limits one expression per file).\\nSee also  \
+ToMatlab  and  PrintMatlab.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_OutputStream"}], "]"}],
+                     ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`file", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`e", ",", "72"}], 
+                    "]"}]}], "]"}], ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_OutputStream", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`file", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", "72"}], "]"}]}],
+                     "]"}], ";"}], ")"}], "/;", 
+                    RowBox[{"!", 
+                    RowBox[{
+                    "NumberQ", "[", "MatlabUtils`ToMatlab`Private`name", 
+                    "]"}]}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_String"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", "=", 
+                    RowBox[{
+                    "OpenWrite", "[", "MatlabUtils`ToMatlab`Private`file", 
+                    "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`e", ",", "72"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{
+                    "Close", "[", "MatlabUtils`ToMatlab`Private`f", "]"}], 
+                    ";"}]}], "]"}], ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_String", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", "=", 
+                    RowBox[{
+                    "OpenWrite", "[", "MatlabUtils`ToMatlab`Private`file", 
+                    "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", "72"}], "]"}]}],
+                     "]"}], ";", 
+                    RowBox[{"Close", "[", "MatlabUtils`ToMatlab`Private`f", 
+                    "]"}], ";"}]}], "]"}], ";"}], ")"}], "/;", 
+                    RowBox[{"!", 
+                    RowBox[{
+                    "NumberQ", "[", "MatlabUtils`ToMatlab`Private`name", 
+                    "]"}]}]}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_OutputStream", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`file", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}]}], "]"}], 
+                    ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_OutputStream", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`file", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}]}], "]"}], 
+                    ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_String", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", "=", 
+                    RowBox[{
+                    "OpenWrite", "[", "MatlabUtils`ToMatlab`Private`file", 
+                    "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}]}], "]"}], 
+                    ";", 
+                    RowBox[{
+                    "Close", "[", "MatlabUtils`ToMatlab`Private`f", "]"}], 
+                    ";"}]}], "]"}], ";"}], ")"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"WriteMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e_", ",", 
+                    "MatlabUtils`ToMatlab`Private`file_String", ",", 
+                    "MatlabUtils`ToMatlab`Private`name_", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin_Integer"}], "]"}], ":=", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", "=", 
+                    RowBox[{
+                    "OpenWrite", "[", "MatlabUtils`ToMatlab`Private`file", 
+                    "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"WriteString", "[", 
+                    RowBox[{"MatlabUtils`ToMatlab`Private`f", ",", 
+                    RowBox[{"ToMatlab", "[", 
+                    RowBox[{
+                    "MatlabUtils`ToMatlab`Private`e", ",", 
+                    "MatlabUtils`ToMatlab`Private`name", ",", 
+                    "MatlabUtils`ToMatlab`Private`margin"}], "]"}]}], "]"}], 
+                    ";", 
+                    RowBox[{
+                    "Close", "[", "MatlabUtils`ToMatlab`Private`f", "]"}], 
+                    ";"}]}], "]"}], ";"}], ")"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"MatlabUtils`ToMatlab`WriteMatlab\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"WriteMatlab[expr, file]  or  WriteMatlab[expr, \
+file, name] Writes the  expr  in matlab form into the given file. The second \
+form makes this an assignment into the variable  name.\\nExample: f = \
+OpenWrite[\\\"file.m\\\"]; WriteMatlab[Cos[x]-x, f, y]; Close[f];\\nThe file \
+argument can also be a String that gives the name of the file: \
+WriteMatlab[Cos[x]-x, \\\"file.m\\\", y]; achieves the same result as the \
+previous example (but this limits one expression per file).\\nSee also  \
+ToMatlab  and  PrintMatlab.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "WriteMatlab[expr, file]  or  WriteMatlab[expr, file, name] Writes the  \
+expr  in matlab form into the given file. The second form makes this an \
+assignment into the variable  name.\nExample: f = OpenWrite[\"file.m\"]; \
+WriteMatlab[Cos[x]-x, f, y]; Close[f];\nThe file argument can also be a \
+String that gives the name of the file: WriteMatlab[Cos[x]-x, \"file.m\", y]; \
+achieves the same result as the previous example (but this limits one \
+expression per file).\nSee also  ToMatlab  and  PrintMatlab.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, MatlabUtils`ToMatlab`WriteMatlab, {
+      MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[OutputStream]]] :> (
+        WriteString[MatlabUtils`ToMatlab`Private`file, 
+          MatlabUtils`ToMatlab`ToMatlab[MatlabUtils`ToMatlab`Private`e, 72]]; 
+        Null), MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[OutputStream]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]]] :> 
+       Condition[WriteString[MatlabUtils`ToMatlab`Private`file, 
+           MatlabUtils`ToMatlab`ToMatlab[
+           MatlabUtils`ToMatlab`Private`e, MatlabUtils`ToMatlab`Private`name, 
+            72]]; Null, 
+         Not[
+          NumberQ[MatlabUtils`ToMatlab`Private`name]]], 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[String]]] :> (
+        Block[{MatlabUtils`ToMatlab`Private`f = 
+           OpenWrite[MatlabUtils`ToMatlab`Private`file]}, 
+          WriteString[MatlabUtils`ToMatlab`Private`f, 
+            MatlabUtils`ToMatlab`ToMatlab[
+            MatlabUtils`ToMatlab`Private`e, 72]]; 
+          Close[MatlabUtils`ToMatlab`Private`f]; Null]; Null), 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[String]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]]] :> 
+       Condition[
+        Block[{MatlabUtils`ToMatlab`Private`f = 
+            OpenWrite[MatlabUtils`ToMatlab`Private`file]}, 
+           WriteString[MatlabUtils`ToMatlab`Private`f, 
+             MatlabUtils`ToMatlab`ToMatlab[
+             MatlabUtils`ToMatlab`Private`e, 
+              MatlabUtils`ToMatlab`Private`name, 72]]; 
+           Close[MatlabUtils`ToMatlab`Private`f]; Null]; Null, 
+         Not[
+          NumberQ[MatlabUtils`ToMatlab`Private`name]]], 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[OutputStream]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (WriteString[MatlabUtils`ToMatlab`Private`file, 
+          MatlabUtils`ToMatlab`ToMatlab[
+          MatlabUtils`ToMatlab`Private`e, 
+           MatlabUtils`ToMatlab`Private`margin]]; Null), 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[OutputStream]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (WriteString[MatlabUtils`ToMatlab`Private`file, 
+          MatlabUtils`ToMatlab`ToMatlab[
+          MatlabUtils`ToMatlab`Private`e, MatlabUtils`ToMatlab`Private`name, 
+           MatlabUtils`ToMatlab`Private`margin]]; Null), 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[String]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (
+        Block[{MatlabUtils`ToMatlab`Private`f = 
+           OpenWrite[MatlabUtils`ToMatlab`Private`file]}, 
+          WriteString[MatlabUtils`ToMatlab`Private`f, 
+            MatlabUtils`ToMatlab`ToMatlab[
+            MatlabUtils`ToMatlab`Private`e, 
+             MatlabUtils`ToMatlab`Private`margin]]; 
+          Close[MatlabUtils`ToMatlab`Private`f]; Null]; Null), 
+       MatlabUtils`ToMatlab`WriteMatlab[
+         Pattern[MatlabUtils`ToMatlab`Private`e, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`file, 
+          Blank[String]], 
+         Pattern[MatlabUtils`ToMatlab`Private`name, 
+          Blank[]], 
+         Pattern[MatlabUtils`ToMatlab`Private`margin, 
+          Blank[Integer]]] :> (
+        Block[{MatlabUtils`ToMatlab`Private`f = 
+           OpenWrite[MatlabUtils`ToMatlab`Private`file]}, 
+          WriteString[MatlabUtils`ToMatlab`Private`f, 
+            MatlabUtils`ToMatlab`ToMatlab[
+            MatlabUtils`ToMatlab`Private`e, MatlabUtils`ToMatlab`Private`name,
+              MatlabUtils`ToMatlab`Private`margin]]; 
+          Close[MatlabUtils`ToMatlab`Private`f]; Null]; Null)}], "SubValues" -> 
+    None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {}, "FullName" -> 
+    "MatlabUtils`ToMatlab`WriteMatlab"], False]]], "Output",
+ CellChangeTimes->{3.934883927404454*^9, 3.9348839847442656`*^9, 
+  3.9348843696894107`*^9},
+ CellLabel->"Out[56]=",ExpressionUUID->"500e59ed-8dcf-48ea-a31d-3daa3c56df34"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"x", "+", "y"}], ")"}], "^", "20"}], "//", "Expand"}]}]], "Input",
+ CellLabel->"In[57]:=",ExpressionUUID->"9b72f1a9-a13d-467c-b57b-60e9d6111257"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["x", "20"], "+", 
+  RowBox[{"20", " ", 
+   SuperscriptBox["x", "19"], " ", "y"}], "+", 
+  RowBox[{"190", " ", 
+   SuperscriptBox["x", "18"], " ", 
+   SuperscriptBox["y", "2"]}], "+", 
+  RowBox[{"1140", " ", 
+   SuperscriptBox["x", "17"], " ", 
+   SuperscriptBox["y", "3"]}], "+", 
+  RowBox[{"4845", " ", 
+   SuperscriptBox["x", "16"], " ", 
+   SuperscriptBox["y", "4"]}], "+", 
+  RowBox[{"15504", " ", 
+   SuperscriptBox["x", "15"], " ", 
+   SuperscriptBox["y", "5"]}], "+", 
+  RowBox[{"38760", " ", 
+   SuperscriptBox["x", "14"], " ", 
+   SuperscriptBox["y", "6"]}], "+", 
+  RowBox[{"77520", " ", 
+   SuperscriptBox["x", "13"], " ", 
+   SuperscriptBox["y", "7"]}], "+", 
+  RowBox[{"125970", " ", 
+   SuperscriptBox["x", "12"], " ", 
+   SuperscriptBox["y", "8"]}], "+", 
+  RowBox[{"167960", " ", 
+   SuperscriptBox["x", "11"], " ", 
+   SuperscriptBox["y", "9"]}], "+", 
+  RowBox[{"184756", " ", 
+   SuperscriptBox["x", "10"], " ", 
+   SuperscriptBox["y", "10"]}], "+", 
+  RowBox[{"167960", " ", 
+   SuperscriptBox["x", "9"], " ", 
+   SuperscriptBox["y", "11"]}], "+", 
+  RowBox[{"125970", " ", 
+   SuperscriptBox["x", "8"], " ", 
+   SuperscriptBox["y", "12"]}], "+", 
+  RowBox[{"77520", " ", 
+   SuperscriptBox["x", "7"], " ", 
+   SuperscriptBox["y", "13"]}], "+", 
+  RowBox[{"38760", " ", 
+   SuperscriptBox["x", "6"], " ", 
+   SuperscriptBox["y", "14"]}], "+", 
+  RowBox[{"15504", " ", 
+   SuperscriptBox["x", "5"], " ", 
+   SuperscriptBox["y", "15"]}], "+", 
+  RowBox[{"4845", " ", 
+   SuperscriptBox["x", "4"], " ", 
+   SuperscriptBox["y", "16"]}], "+", 
+  RowBox[{"1140", " ", 
+   SuperscriptBox["x", "3"], " ", 
+   SuperscriptBox["y", "17"]}], "+", 
+  RowBox[{"190", " ", 
+   SuperscriptBox["x", "2"], " ", 
+   SuperscriptBox["y", "18"]}], "+", 
+  RowBox[{"20", " ", "x", " ", 
+   SuperscriptBox["y", "19"]}], "+", 
+  SuperscriptBox["y", "20"]}]], "Output",
+ CellChangeTimes->{3.9348839275346727`*^9, 3.934883984880575*^9, 
+  3.9348843698358192`*^9},
+ CellLabel->"Out[57]=",ExpressionUUID->"20ee044f-7cf0-4edc-8e2a-98057b8ccea8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ToMatlab", "Subsection",ExpressionUUID->"4c13d897-719d-47ba-8ad2-48a791229451"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", "a", "]"}]], "Input",
+ CellLabel->"In[58]:=",ExpressionUUID->"684d24f0-9bd3-4895-8b0d-85fc53403958"],
+
+Cell[BoxData["\<\"x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+4845.*\
+ ...\\n  x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.* ...\
+\\n  y.^7+125970.*x.^12.*y.^8+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+ \
+...\\n  167960.*x.^9.*y.^11+125970.*x.^8.*y.^12+77520.*x.^7.*y.^13+38760.* \
+...\\n  x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.*y.^16+1140.*x.^3.* ...\\n  \
+y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"], "Output",
+ CellChangeTimes->{3.934883927745643*^9, 3.9348839849546013`*^9, 
+  3.934884369963397*^9},
+ CellLabel->"Out[58]=",ExpressionUUID->"84f8ed9b-973f-404d-af5f-f5625241fd3c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", 
+  RowBox[{"a", ",", "\"\<a\>\""}], "]"}]], "Input",
+ CellLabel->"In[59]:=",ExpressionUUID->"a8aad717-d281-4a69-b65f-5d53a3428f8a"],
+
+Cell[BoxData["\<\"a=x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+\
+4845.* ...\\n  \
+x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.* ...\\n  \
+y.^7+125970.*x.^12.*y.^8+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+ ...\\n  \
+167960.*x.^9.*y.^11+125970.*x.^8.*y.^12+77520.*x.^7.*y.^13+38760.* ...\\n  \
+x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.*y.^16+1140.*x.^3.* ...\\n  \
+y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"], "Output",
+ CellChangeTimes->{3.9348839279319*^9, 3.9348839850292673`*^9, 
+  3.9348843700423064`*^9},
+ CellLabel->"Out[59]=",ExpressionUUID->"78f8005c-f782-4d97-b8f8-d18e64795506"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", 
+  RowBox[{"a", ",", "150"}], "]"}]], "Input",
+ CellLabel->"In[60]:=",ExpressionUUID->"6ed1854f-7d3c-42c0-a4c6-08ace0dc1893"],
+
+Cell[BoxData["\<\"x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+4845.*\
+x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.*y.^7+125970.*\
+x.^12.*y.^8+ ...\\n  \
+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^\
+12+77520.*x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.* \
+...\\n  y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"],\
+ "Output",
+ CellChangeTimes->{3.934883928291134*^9, 3.9348839851145897`*^9, 
+  3.9348843702400656`*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"ad11194b-e48f-4211-94cb-d20e95fa88bc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToMatlab", "[", 
+  RowBox[{"a", ",", "\"\<a\>\"", ",", "150"}], "]"}]], "Input",
+ CellLabel->"In[61]:=",ExpressionUUID->"7a230ac4-9ec1-474c-a3d4-52a472bb4773"],
+
+Cell[BoxData["\<\"a=x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+\
+4845.*x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.*y.^7+\
+125970.*x.^12.*y.^8+ ...\\n  \
+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^\
+12+77520.*x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.* \
+...\\n  y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"],\
+ "Output",
+ CellChangeTimes->{3.9348839285189342`*^9, 3.934883985264242*^9, 
+  3.934884370383938*^9},
+ CellLabel->"Out[61]=",ExpressionUUID->"5d93d4fe-b0c8-40c7-a4cd-84066fa7341c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["PrintMatlab", "Subsection",ExpressionUUID->"04592084-cb2e-47cd-9730-6666446c0732"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PrintMatlab", "[", "a", "]"}]], "Input",
+ CellLabel->"In[62]:=",ExpressionUUID->"2d9e46f3-5b4a-427f-8c70-64a1f33838f4"],
+
+Cell[BoxData["\<\"x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+4845.*\
+ ...\\n  x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.* ...\\n  \
+x.^13.*y.^7+125970.*x.^12.*y.^8+167960.*x.^11.*y.^9+184756.* ...\\n  \
+x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^12+77520.* ...\\n  \
+x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.* ...\\n  \
+x.^4.*y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+ ...\\n  \
+y.^20;\\n\"\>"], "Print",
+ CellChangeTimes->{3.934883985400488*^9, 3.9348843704705725`*^9},
+ CellLabel->
+  "During evaluation of \
+In[62]:=",ExpressionUUID->"52a68810-cbf9-4261-9000-c82b66f53f8d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PrintMatlab", "[", 
+  RowBox[{"a", ",", "\"\<a\>\""}], "]"}]], "Input",
+ CellLabel->"In[63]:=",ExpressionUUID->"bb7f7fbb-1b93-4929-a508-e5697296458e"],
+
+Cell[BoxData["\<\"a=x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+\
+4845.* ...\\n  x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.* \
+...\\n  x.^13.*y.^7+125970.*x.^12.*y.^8+167960.*x.^11.*y.^9+184756.* ...\\n  \
+x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^12+77520.* ...\\n  \
+x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.* ...\\n  \
+x.^4.*y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+ ...\\n  \
+y.^20;\\n\"\>"], "Print",
+ CellChangeTimes->{3.934883985569867*^9, 3.9348843705543685`*^9},
+ CellLabel->
+  "During evaluation of \
+In[63]:=",ExpressionUUID->"ce4a3777-e35f-4355-84af-5c37b0bd6702"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PrintMatlab", "[", 
+  RowBox[{"a", ",", "150"}], "]"}]], "Input",
+ CellLabel->"In[64]:=",ExpressionUUID->"016a6372-663f-4fcb-acf8-d034a4f234fb"],
+
+Cell[BoxData["\<\"x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+4845.*\
+x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.*y.^7+125970.*\
+x.^12.*y.^8+ ...\\n  \
+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^\
+12+77520.*x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.* \
+...\\n  y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"],\
+ "Print",
+ CellChangeTimes->{3.934883985787115*^9, 3.9348843706433516`*^9},
+ CellLabel->
+  "During evaluation of \
+In[64]:=",ExpressionUUID->"47363241-0ef2-41ee-8682-15c11db14759"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PrintMatlab", "[", 
+  RowBox[{"a", ",", "\"\<a\>\"", ",", "150"}], "]"}]], "Input",
+ CellLabel->"In[65]:=",ExpressionUUID->"7805fc0e-ab97-4c5e-8db7-b8a20f5a1b5f"],
+
+Cell[BoxData["\<\"a=x.^20+20.*x.^19.*y+190.*x.^18.*y.^2+1140.*x.^17.*y.^3+\
+4845.*x.^16.*y.^4+15504.*x.^15.*y.^5+38760.*x.^14.*y.^6+77520.*x.^13.*y.^7+\
+125970.*x.^12.*y.^8+ ...\\n  \
+167960.*x.^11.*y.^9+184756.*x.^10.*y.^10+167960.*x.^9.*y.^11+125970.*x.^8.*y.^\
+12+77520.*x.^7.*y.^13+38760.*x.^6.*y.^14+15504.*x.^5.*y.^15+4845.*x.^4.* \
+...\\n  y.^16+1140.*x.^3.*y.^17+190.*x.^2.*y.^18+20.*x.*y.^19+y.^20;\\n\"\>"],\
+ "Print",
+ CellChangeTimes->{3.9348839858944125`*^9, 3.934884370717122*^9},
+ CellLabel->
+  "During evaluation of \
+In[65]:=",ExpressionUUID->"5fdb6fb4-7079-4656-b61c-20440f288c88"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WriteMatlab", "Subsection",ExpressionUUID->"ac7d6c1d-3caf-462d-9a6c-20d656ccadc4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Directory", "[", "]"}]], "Input",
+ CellLabel->"In[66]:=",ExpressionUUID->"ebb94b50-0a3c-4d3b-a630-2afe7e87fe54"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\mechm\\\\Documents\"\>"], "Output",
+ CellChangeTimes->{3.934883929595783*^9, 3.9348839859988775`*^9, 
+  3.934884370788936*^9},
+ CellLabel->"Out[66]=",ExpressionUUID->"cec6ae61-bbd9-448e-bf16-6b4996bf827b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"f", "=", 
+  RowBox[{"OpenWrite", "[", "\"\<tomatlab-test1.m\>\"", "]"}]}]], "Input",
+ CellLabel->"In[67]:=",ExpressionUUID->"3544560f-946f-4e52-bf19-048c02e2d209"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["OutputStream",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquarePlusIconMedium"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                AbsoluteCurrentValue[Magnification]}]], 
+            GraphicsBox[{
+              Thickness[0.0016806722689075631`], {
+               FaceForm[{
+                 GrayLevel[0.93], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {
+                1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}}}, {{{
+                25.499999999999996`, 2.5}, {25.499999999999996`, 
+                1.3953100000000003`}, {24.604699999999998`, 
+                0.49999999999999994`}, {23.5, 0.49999999999999994`}, {2.5, 
+                0.49999999999999994`}, {1.3953100000000003`, 
+                0.49999999999999994`}, {0.49999999999999994`, 
+                1.3953100000000003`}, {0.49999999999999994`, 2.5}, {
+                0.49999999999999994`, 23.5}, {0.49999999999999994`, 
+                24.604699999999998`}, {1.3953100000000003`, 
+                25.499999999999996`}, {2.5, 25.499999999999996`}, {23.5, 
+                25.499999999999996`}, {24.604699999999998`, 
+                25.499999999999996`}, {25.499999999999996`, 
+                24.604699999999998`}, {25.499999999999996`, 23.5}, {
+                25.499999999999996`, 2.5}}}]}, {
+               RGBColor[0.699951, 0.699951, 0.699951], 
+               Opacity[1.], 
+               JoinForm[{ElisionsDump`Miter, 10.}], 
+               
+               JoinedCurveBox[{{{1, 4, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {
+                1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}}}, {{{
+                25.499999999999996`, 2.5}, {25.499999999999996`, 
+                1.3953100000000003`}, {24.604699999999998`, 
+                0.49999999999999994`}, {23.5, 0.49999999999999994`}, {2.5, 
+                0.49999999999999994`}, {1.3953100000000003`, 
+                0.49999999999999994`}, {0.49999999999999994`, 
+                1.3953100000000003`}, {0.49999999999999994`, 2.5}, {
+                0.49999999999999994`, 23.5}, {0.49999999999999994`, 
+                24.604699999999998`}, {1.3953100000000003`, 
+                25.499999999999996`}, {2.5, 25.499999999999996`}, {23.5, 
+                25.499999999999996`}, {24.604699999999998`, 
+                25.499999999999996`}, {25.499999999999996`, 
+                24.604699999999998`}, {25.499999999999996`, 23.5}, {
+                25.499999999999996`, 2.5}}}]}, {
+               FaceForm[{
+                 RGBColor[0.5, 0.5, 0.5], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{0, 2, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {
+                0, 1, 0}, {1, 3, 3}, {1, 3, 3}}}, {{{3.52539, 
+                1.0035199999999997`}, {2.5250000000000004`, 
+                1.0035199999999997`}, {1.6828099999999997`, 
+                1.0035199999999997`}, {0.9999999999999999, 
+                1.6863299999999997`}, {0.9999999999999999, 
+                2.5285199999999994`}, {0.9999999999999999, 
+                23.474999999999998`}, {0.9999999999999999, 
+                24.317199999999996`}, {1.6828099999999997`, 
+                24.999999999999996`}, {2.5250000000000004`, 
+                24.999999999999996`}, {3.52539, 24.999999999999996`}, {
+                3.52539, 24.999999999999993`}, {5.523440000000001, 
+                22.421099999999996`}, {5.523440000000001, 13.0039}, {
+                5.523440000000001, 3.5867199999999992`}, {3.52539, 
+                1.0035199999999997`}, {3.52539, 1.0035199999999997`}}}], 
+               
+               FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {
+                0, 1, 0}, {0, 1, 0}}}, {{{22.4977, 12.9016}, {
+                17.740599999999997`, 16.8398}, {17.740599999999997`, 
+                14.856599999999998`}, {19.980900000000002`, 
+                12.947299999999997`}, {17.740599999999997`, 
+                10.946100000000001`}, {17.740599999999997`, 8.96289}, {
+                22.4977, 12.9016}}}]}, {
+               FaceForm[{
+                 RGBColor[
+                 0.46093800000000007`, 0.46093800000000007`, 
+                  0.46093800000000007`], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{9.202339999999998, 12.8969}, {9.202339999999998, 
+                12.335499999999998`}, {8.747660000000002, 
+                11.880899999999999`}, {8.186329999999998, 
+                11.880899999999999`}, {7.624999999999999, 
+                11.880899999999999`}, {7.169920000000001, 
+                12.335499999999998`}, {7.169920000000001, 12.8969}, {
+                7.169920000000001, 13.458200000000003`}, {7.624999999999999, 
+                13.9133}, {8.186329999999998, 13.9133}, {8.747660000000002, 
+                13.9133}, {9.202339999999998, 13.458200000000003`}, {
+                9.202339999999998, 12.8969}}}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{12.6227, 12.8969}, {12.6227, 12.335499999999998`}, {
+                12.167599999999998`, 11.880899999999999`}, {
+                11.606200000000001`, 11.880899999999999`}, {11.0449, 
+                11.880899999999999`}, {10.589799999999999`, 
+                12.335499999999998`}, {10.589799999999999`, 12.8969}, {
+                10.589799999999999`, 13.458200000000003`}, {11.0449, 
+                13.9133}, {11.606200000000001`, 13.9133}, {
+                12.167599999999998`, 13.9133}, {12.6227, 
+                13.458200000000003`}, {12.6227, 12.8969}}}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{16.042600000000004`, 12.8969}, {16.042600000000004`, 
+                12.335499999999998`}, {15.587499999999999`, 
+                11.880899999999999`}, {15.026199999999998`, 
+                11.880899999999999`}, {14.464799999999997`, 
+                11.880899999999999`}, {14.010199999999998`, 
+                12.335499999999998`}, {14.010199999999998`, 12.8969}, {
+                14.010199999999998`, 13.458200000000003`}, {
+                14.464799999999997`, 13.9133}, {15.026199999999998`, 
+                13.9133}, {15.587499999999999`, 13.9133}, {
+                16.042600000000004`, 13.458200000000003`}, {
+                16.042600000000004`, 12.8969}}}]}}, AspectRatio -> 1, Axes -> 
+             False, Background -> GrayLevel[0.5], Frame -> True, FrameStyle -> 
+             Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.7]], FrameTicks -> None, ImageSize -> {Automatic, 
+               Dynamic[
+               3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])]}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Name: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  StyleBox[
+                   PaneBox[
+                   "\"tomatlab-test1.m\"", ContentPadding -> False, 
+                    FrameMargins -> 0, StripOnInput -> True, BaselinePosition -> 
+                    Baseline, ImageSize -> {{1, 300}, Automatic}], 
+                   LineBreakWithin -> False], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Unique ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource[
+               "FEBitmaps", "SquareMinusIconMedium"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                AbsoluteCurrentValue[Magnification]}]], 
+            GraphicsBox[{
+              Thickness[0.0016806722689075631`], {
+               FaceForm[{
+                 GrayLevel[0.93], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {
+                1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}}}, {{{
+                25.499999999999996`, 2.5}, {25.499999999999996`, 
+                1.3953100000000003`}, {24.604699999999998`, 
+                0.49999999999999994`}, {23.5, 0.49999999999999994`}, {2.5, 
+                0.49999999999999994`}, {1.3953100000000003`, 
+                0.49999999999999994`}, {0.49999999999999994`, 
+                1.3953100000000003`}, {0.49999999999999994`, 2.5}, {
+                0.49999999999999994`, 23.5}, {0.49999999999999994`, 
+                24.604699999999998`}, {1.3953100000000003`, 
+                25.499999999999996`}, {2.5, 25.499999999999996`}, {23.5, 
+                25.499999999999996`}, {24.604699999999998`, 
+                25.499999999999996`}, {25.499999999999996`, 
+                24.604699999999998`}, {25.499999999999996`, 23.5}, {
+                25.499999999999996`, 2.5}}}]}, {
+               RGBColor[0.699951, 0.699951, 0.699951], 
+               Opacity[1.], 
+               JoinForm[{ElisionsDump`Miter, 10.}], 
+               
+               JoinedCurveBox[{{{1, 4, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}, {
+                1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {0, 1, 0}}}, {{{
+                25.499999999999996`, 2.5}, {25.499999999999996`, 
+                1.3953100000000003`}, {24.604699999999998`, 
+                0.49999999999999994`}, {23.5, 0.49999999999999994`}, {2.5, 
+                0.49999999999999994`}, {1.3953100000000003`, 
+                0.49999999999999994`}, {0.49999999999999994`, 
+                1.3953100000000003`}, {0.49999999999999994`, 2.5}, {
+                0.49999999999999994`, 23.5}, {0.49999999999999994`, 
+                24.604699999999998`}, {1.3953100000000003`, 
+                25.499999999999996`}, {2.5, 25.499999999999996`}, {23.5, 
+                25.499999999999996`}, {24.604699999999998`, 
+                25.499999999999996`}, {25.499999999999996`, 
+                24.604699999999998`}, {25.499999999999996`, 23.5}, {
+                25.499999999999996`, 2.5}}}]}, {
+               FaceForm[{
+                 RGBColor[0.5, 0.5, 0.5], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{0, 2, 0}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {
+                0, 1, 0}, {1, 3, 3}, {1, 3, 3}}}, {{{3.52539, 
+                1.0035199999999997`}, {2.5250000000000004`, 
+                1.0035199999999997`}, {1.6828099999999997`, 
+                1.0035199999999997`}, {0.9999999999999999, 
+                1.6863299999999997`}, {0.9999999999999999, 
+                2.5285199999999994`}, {0.9999999999999999, 
+                23.474999999999998`}, {0.9999999999999999, 
+                24.317199999999996`}, {1.6828099999999997`, 
+                24.999999999999996`}, {2.5250000000000004`, 
+                24.999999999999996`}, {3.52539, 24.999999999999996`}, {
+                3.52539, 24.999999999999993`}, {5.523440000000001, 
+                22.421099999999996`}, {5.523440000000001, 13.0039}, {
+                5.523440000000001, 3.5867199999999992`}, {3.52539, 
+                1.0035199999999997`}, {3.52539, 1.0035199999999997`}}}], 
+               
+               FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {
+                0, 1, 0}, {0, 1, 0}}}, {{{22.4977, 12.9016}, {
+                17.740599999999997`, 16.8398}, {17.740599999999997`, 
+                14.856599999999998`}, {19.980900000000002`, 
+                12.947299999999997`}, {17.740599999999997`, 
+                10.946100000000001`}, {17.740599999999997`, 8.96289}, {
+                22.4977, 12.9016}}}]}, {
+               FaceForm[{
+                 RGBColor[
+                 0.46093800000000007`, 0.46093800000000007`, 
+                  0.46093800000000007`], 
+                 Opacity[1.]}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{9.202339999999998, 12.8969}, {9.202339999999998, 
+                12.335499999999998`}, {8.747660000000002, 
+                11.880899999999999`}, {8.186329999999998, 
+                11.880899999999999`}, {7.624999999999999, 
+                11.880899999999999`}, {7.169920000000001, 
+                12.335499999999998`}, {7.169920000000001, 12.8969}, {
+                7.169920000000001, 13.458200000000003`}, {7.624999999999999, 
+                13.9133}, {8.186329999999998, 13.9133}, {8.747660000000002, 
+                13.9133}, {9.202339999999998, 13.458200000000003`}, {
+                9.202339999999998, 12.8969}}}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{12.6227, 12.8969}, {12.6227, 12.335499999999998`}, {
+                12.167599999999998`, 11.880899999999999`}, {
+                11.606200000000001`, 11.880899999999999`}, {11.0449, 
+                11.880899999999999`}, {10.589799999999999`, 
+                12.335499999999998`}, {10.589799999999999`, 12.8969}, {
+                10.589799999999999`, 13.458200000000003`}, {11.0449, 
+                13.9133}, {11.606200000000001`, 13.9133}, {
+                12.167599999999998`, 13.9133}, {12.6227, 
+                13.458200000000003`}, {12.6227, 12.8969}}}], 
+               
+               FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+                3}}}, {{{16.042600000000004`, 12.8969}, {16.042600000000004`, 
+                12.335499999999998`}, {15.587499999999999`, 
+                11.880899999999999`}, {15.026199999999998`, 
+                11.880899999999999`}, {14.464799999999997`, 
+                11.880899999999999`}, {14.010199999999998`, 
+                12.335499999999998`}, {14.010199999999998`, 12.8969}, {
+                14.010199999999998`, 13.458200000000003`}, {
+                14.464799999999997`, 13.9133}, {15.026199999999998`, 
+                13.9133}, {15.587499999999999`, 13.9133}, {
+                16.042600000000004`, 13.458200000000003`}, {
+                16.042600000000004`, 12.8969}}}]}}, AspectRatio -> 1, Axes -> 
+             False, Background -> GrayLevel[0.5], Frame -> True, FrameStyle -> 
+             Directive[
+               Thickness[Tiny], 
+               GrayLevel[0.7]], FrameTicks -> None, ImageSize -> {Automatic, 
+               Dynamic[
+               3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])]}], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Name: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  PaneBox[
+                  "\"tomatlab-test1.m\"", ImageSize -> {{1, 500}, Automatic}, 
+                   BaselinePosition -> Baseline, ContentPadding -> False, 
+                   FrameMargins -> 0, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Unique ID: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["3", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Binary: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["False", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Open: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  DynamicBox[
+                   ToBoxes[Options[
+                    OutputStream["tomatlab-test1.m", 3]] =!= {}, 
+                    StandardForm], UpdateInterval -> 1], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Encoding: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["Automatic", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Format: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["InputForm", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Page width: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["78", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Number marks: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["Automatic", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  OutputStream["tomatlab-test1.m", 3],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.9348839300675163`*^9, 3.934883986118552*^9, 
+  3.934884371019873*^9},
+ CellLabel->"Out[67]=",ExpressionUUID->"fac553f9-5ead-4e07-a238-bd2a37167041"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "f"}], "]"}]], "Input",
+ CellLabel->"In[68]:=",ExpressionUUID->"53da4491-1cc0-4d7f-a41d-be176cec8c5c"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "f", ",", "\"\<a\>\""}], "]"}]], "Input",
+ CellLabel->"In[69]:=",ExpressionUUID->"bdc056f1-9b4e-4a5b-8834-1bebfb7c691c"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "f", ",", "120"}], "]"}]], "Input",
+ CellLabel->"In[70]:=",ExpressionUUID->"4094cc19-3288-4b35-92e2-00e1cafbcbb2"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "f", ",", "\"\<a\>\"", ",", "120"}], "]"}]], "Input",
+ CellLabel->"In[71]:=",ExpressionUUID->"9aa1d26e-35a8-4e4a-b794-a2ead00bdfe7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Close", "[", "f", "]"}]], "Input",
+ CellLabel->"In[72]:=",ExpressionUUID->"7d0c5762-d4df-4832-bcdd-8234da9f1438"],
+
+Cell[BoxData["\<\"tomatlab-test1.m\"\>"], "Output",
+ CellChangeTimes->{3.9348839317295322`*^9, 3.934883986373691*^9, 
+  3.9348843714573402`*^9},
+ CellLabel->"Out[72]=",ExpressionUUID->"5648040f-5aa5-462e-942a-3b6ee6e37b60"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "\"\<tomatlab-test2.m\>\""}], "]"}]], "Input",
+ CellLabel->"In[73]:=",ExpressionUUID->"07598d56-cd36-42eb-9843-e381dabaa47c"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "\"\<tomatlab-test3.m\>\"", ",", "\"\<a\>\""}], 
+  "]"}]], "Input",
+ CellLabel->"In[74]:=",ExpressionUUID->"6af5d24c-4e46-4e5e-baf4-6e37611bff01"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{"a", ",", "\"\<tomatlab-test4.m\>\"", ",", "120"}], "]"}]], "Input",
+ CellLabel->"In[75]:=",ExpressionUUID->"ffd2d20f-1947-4566-a327-319a142f895c"],
+
+Cell[BoxData[
+ RowBox[{"WriteMatlab", "[", 
+  RowBox[{
+  "a", ",", "\"\<tomatlab-test5.m\>\"", ",", "\"\<a\>\"", ",", "120"}], 
+  "]"}]], "Input",
+ CellLabel->"In[76]:=",ExpressionUUID->"8b32c84b-eb27-4832-ba1b-ed03eec3cfbc"]
+}, Open  ]]
+},
+WindowSize->{1360, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+Magnification->1,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 290, 5, 28, "Input",ExpressionUUID->"afb0b93a-1c6e-49e1-a83c-ab2688509091"],
+Cell[CellGroupData[{
+Cell[873, 29, 130, 2, 28, "Input",ExpressionUUID->"e9c8defd-22d3-453b-815f-2624259dcddc"],
+Cell[1006, 33, 17183, 386, 189, "Output",ExpressionUUID->"4fe32cc6-96b2-4a84-8dce-5354b2bf960d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18226, 424, 133, 2, 28, "Input",ExpressionUUID->"ca6013d5-d5c4-4b80-88ab-9614721a5058"],
+Cell[18362, 428, 13569, 324, 93, "Output",ExpressionUUID->"e486ca2b-8a30-4cb5-a109-0363a07699db"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31968, 757, 133, 2, 28, "Input",ExpressionUUID->"0b3cb294-b8a0-4337-888b-aabddddb758f"],
+Cell[32104, 761, 23676, 527, 165, "Output",ExpressionUUID->"500e59ed-8dcf-48ea-a31d-3daa3c56df34"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55817, 1293, 233, 6, 28, "Input",ExpressionUUID->"9b72f1a9-a13d-467c-b57b-60e9d6111257"],
+Cell[56053, 1301, 2076, 61, 52, "Output",ExpressionUUID->"20ee044f-7cf0-4edc-8e2a-98057b8ccea8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58166, 1367, 85, 0, 53, "Subsection",ExpressionUUID->"4c13d897-719d-47ba-8ad2-48a791229451"],
+Cell[CellGroupData[{
+Cell[58276, 1371, 140, 2, 28, "Input",ExpressionUUID->"684d24f0-9bd3-4895-8b0d-85fc53403958"],
+Cell[58419, 1375, 622, 8, 147, "Output",ExpressionUUID->"84f8ed9b-973f-404d-af5f-f5625241fd3c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59078, 1388, 171, 3, 28, "Input",ExpressionUUID->"a8aad717-d281-4a69-b65f-5d53a3428f8a"],
+Cell[59252, 1393, 626, 9, 147, "Output",ExpressionUUID->"78f8005c-f782-4d97-b8f8-d18e64795506"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59915, 1407, 165, 3, 28, "Input",ExpressionUUID->"6ed1854f-7d3c-42c0-a4c6-08ace0dc1893"],
+Cell[60083, 1412, 599, 9, 90, "Output",ExpressionUUID->"ad11194b-e48f-4211-94cb-d20e95fa88bc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60719, 1426, 183, 3, 28, "Input",ExpressionUUID->"7a230ac4-9ec1-474c-a3d4-52a472bb4773"],
+Cell[60905, 1431, 599, 9, 90, "Output",ExpressionUUID->"5d93d4fe-b0c8-40c7-a4cd-84066fa7341c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61553, 1446, 88, 0, 53, "Subsection",ExpressionUUID->"04592084-cb2e-47cd-9730-6666446c0732"],
+Cell[CellGroupData[{
+Cell[61666, 1450, 143, 2, 28, "Input",ExpressionUUID->"2d9e46f3-5b4a-427f-8c70-64a1f33838f4"],
+Cell[61812, 1454, 633, 10, 149, "Print",ExpressionUUID->"52a68810-cbf9-4261-9000-c82b66f53f8d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62482, 1469, 174, 3, 28, "Input",ExpressionUUID->"bb7f7fbb-1b93-4929-a508-e5697296458e"],
+Cell[62659, 1474, 635, 10, 149, "Print",ExpressionUUID->"ce4a3777-e35f-4355-84af-5c37b0bd6702"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63331, 1489, 168, 3, 28, "Input",ExpressionUUID->"016a6372-663f-4fcb-acf8-d034a4f234fb"],
+Cell[63502, 1494, 597, 10, 77, "Print",ExpressionUUID->"47363241-0ef2-41ee-8682-15c11db14759"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64136, 1509, 186, 3, 28, "Input",ExpressionUUID->"7805fc0e-ab97-4c5e-8db7-b8a20f5a1b5f"],
+Cell[64325, 1514, 599, 10, 77, "Print",ExpressionUUID->"5fdb6fb4-7079-4656-b61c-20440f288c88"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64973, 1530, 88, 0, 53, "Subsection",ExpressionUUID->"ac7d6c1d-3caf-462d-9a6c-20d656ccadc4"],
+Cell[CellGroupData[{
+Cell[65086, 1534, 136, 2, 28, "Input",ExpressionUUID->"ebb94b50-0a3c-4d3b-a630-2afe7e87fe54"],
+Cell[65225, 1538, 238, 3, 32, "Output",ExpressionUUID->"cec6ae61-bbd9-448e-bf16-6b4996bf827b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65500, 1546, 187, 3, 28, "Input",ExpressionUUID->"3544560f-946f-4e52-bf19-048c02e2d209"],
+Cell[65690, 1551, 18966, 349, 71, "Output",ExpressionUUID->"fac553f9-5ead-4e07-a238-bd2a37167041"]
+}, Open  ]],
+Cell[84671, 1903, 166, 3, 28, "Input",ExpressionUUID->"53da4491-1cc0-4d7f-a41d-be176cec8c5c"],
+Cell[84840, 1908, 184, 3, 28, "Input",ExpressionUUID->"bdc056f1-9b4e-4a5b-8834-1bebfb7c691c"],
+Cell[85027, 1913, 178, 3, 28, "Input",ExpressionUUID->"4094cc19-3288-4b35-92e2-00e1cafbcbb2"],
+Cell[85208, 1918, 196, 3, 28, "Input",ExpressionUUID->"9aa1d26e-35a8-4e4a-b794-a2ead00bdfe7"],
+Cell[CellGroupData[{
+Cell[85429, 1925, 137, 2, 28, "Input",ExpressionUUID->"7d0c5762-d4df-4832-bcdd-8234da9f1438"],
+Cell[85569, 1929, 223, 3, 32, "Output",ExpressionUUID->"5648040f-5aa5-462e-942a-3b6ee6e37b60"]
+}, Open  ]],
+Cell[85807, 1935, 189, 3, 28, "Input",ExpressionUUID->"07598d56-cd36-42eb-9843-e381dabaa47c"],
+Cell[85999, 1940, 210, 4, 28, "Input",ExpressionUUID->"6af5d24c-4e46-4e5e-baf4-6e37611bff01"],
+Cell[86212, 1946, 201, 3, 28, "Input",ExpressionUUID->"ffd2d20f-1947-4566-a327-319a142f895c"],
+Cell[86416, 1951, 225, 5, 84, "Input",ExpressionUUID->"8b32c84b-eb27-4832-ba1b-ed03eec3cfbc"]
+}, Open  ]]
+}
+]
+*)
+
