@@ -47,6 +47,26 @@ def se3ToVec( se3mat ):
         raise ValueError('Invalid Input : Input must be se3')
   
 
+def se3FromGeom(axis, point, pitch) :
+    """ Returns a 6D vector xi = [w,v] representing a screw motion
+        defined by the given axis, point and pitch """
+    if(np.shape(axis) == (3,) and np.shape(point) == (3,) and np.isscalar(pitch)):
+        w = axis / np.linalg.norm(axis)
+        v = np.cross(-w, point) + pitch * w
+        xi = np.block( [w,v] )
+        return xi
+    else:
+        raise ValueError('Invalid Input : Input must be R^3, R^3, scalar')
+
+
+def inertia(m, Ixx, Iyy, Izz, Ixy, Ixz, Iyz, cx=0., cy=0., cz=0.):
+    """ Returns a 6 x 6 spatial inertia matrix from given mass, inertia and centroid """
+    I = np.array([ [Ixx, Ixy, Ixz], [Ixy, Iyy, Iyz],[Ixz, Iyz, Izz]])
+    cm = np.array([cx, cy, cz])
+    G = np.block( [ [ I, m*VecToso3(cm) ], [ -m*VecToso3(cm) , m*np.eye(3) ] ] )
+    return G     
+
+
 def TransToRp( T ):
     """ Extracts rotation matrix R and translation p from given rigid transformation matrix T """
     return T[:3,:3], T[:3,3]
@@ -62,7 +82,7 @@ def InvTrans( T ):
     R,p = TransToRp(T)
     return np.block( [ [ np.c_[ R.T, -R.T.dot(p)] ], [ np.array([0,0,0,1]) ] ] )
 
-# ToDo : Optinal argument for selecting output SO3 when xi is so3
+# ToDo : Optional argument for selecting output SO3 when xi is so3
 def Exp(xi, th=None):
     """ Exp(xi,th) : Compute the matrix exponential Exp(skew(xi)*th), 
                      xi = [w,v], assume unit w or v (for translation) 
@@ -130,7 +150,7 @@ def Ad( T, xi=None ):
     # T = [R,p; 0,1], then Ad(T) = [R,0; skew(p)*R,R]
     R,p = TransToRp(T)
     Adjoint = np.block ( [ [R,np.zeros([3,3])], [VecToso3(p) @ R, R] ] )
-    if xi:
+    if xi is not None:
         return Adjoint.dot(xi)
     else:
         return Adjoint
@@ -140,7 +160,7 @@ def dAd( T, tau=None ):
     """ dAd(T) : Transpose of Ad(T)
         dAd(T, tau) : dAd(T)*tau. Coordinate transformation of wrench tau by T """
     # Transpose(Ad(T))*wrench 
-    if tau:
+    if tau is not None:
         return Ad(T).T @ tau
     else:
         return Ad(T).T
@@ -153,7 +173,7 @@ def ad( xi1, xi2=None ):
     w = xi1[:3]
     v = xi1[3:]
     adjoint = np.block( [ [VecToso3(w),np.zeros([3,3])], [VecToso3(v), VecToso3(w)] ])
-    if xi2:
+    if xi2 is not None:
        return adjoint.dot(xi2)
     else:
        return adjoint
@@ -163,7 +183,7 @@ def dad( xi, tau=None):
     """ dad(xi) : Transpose of ad(xi)
         dad(xi, tau) : Cross product between twist xi and wrench tau """
     # xi = [w,v], then dad(xi) = Transpose(ad(xi))
-    if tau:
+    if tau is not None:
        return ad(xi).T @ tau
     else:
        return ad(xi).T

@@ -4,7 +4,7 @@
 
 # Basic imports.
 import numpy as np
-import lap_us_robot.lap_us_robot.lie_group as lg
+import lie_group as lg
 
 class ChunRobot:
     """ Class representing a serial robot manipulator and kinematics and dynamics algorithms methods """
@@ -15,7 +15,7 @@ class ChunRobot:
 
         # 1. Set of twists of each joint at initial configuration,
         # described in fixed space csys. 'n' sets of 1 x 6 vector
-        self.twist_set = np.zeros(self.num_joints,6)
+        self.twist_set = np.zeros((self.num_joints,6))
 
         # 2. Set of initial configuration of each link's body csys. 
         # with respect to fixed space csys. at initial configuration.
@@ -68,7 +68,7 @@ class ChunRobot:
         T = np.eye(4,4)
         for idx in range(1, self.num_joints):
             T = T @ lg.Exp(self.twist_set[idx-1], jAng[idx-1])
-            Js[:,idx] = lg.Ad(T, self.twist_set[:,idx])
+            Js[:,idx] = lg.Ad(T, self.twist_set[idx])
         return Js
 
     def djacobian_space(self, jAng, jVel):
@@ -112,12 +112,7 @@ class ChunRobot:
         """ Compute the mass matrix of the robot given joint angles 
             returns n x n mass matrix """
         M = np.zeros((self.num_joints,self.num_joints))
-        # for n in range(self.num_joints):
-        #     Gb = self.inertia_set[n,:,:]
-        #     Jb = self.jacobian_body(jAng, n)
-        #     M = M + (Jb.T @ Gb @ Jb)
-        # return M
-    
+
         for n in range(self.num_joints):
             Gb = self.inertia_set[n,:,:]
             Jb = self.jacobian_body(jAng, n)
@@ -131,29 +126,10 @@ class ChunRobot:
     def coriolis_matrix(self, jAng, jVel):
         """ Compute the Coriolis matrix of the robot given joint angle and velocity 
             returns n x n Coriolis matrix """
-        C = np.zeros(self.num_joints,self.num_joints)
-        Jset = np.zeros(self.num_joints,6,self.num_joints)             
+        C = np.zeros( (self.num_joints,self.num_joints) )
+        Jset = np.zeros( (self.num_joints,6,self.num_joints) )             
         for i in range(self.num_joints):
             Jset[i,:,:] = self.jacobian_body(jAng, i)
-
-        # for i in range(self.num_joints):
-        #     for j in range(self.num_joints):
-        #         for idx in range(max(i,j), self.num_joints):
-        #             Gb = self.inertia_set[idx,:,:]
-        #             Jj = Jset[idx,:,j]
-        #             Ji = Jset[idx,:,i]
-        #             C1 = Jj.dot( Gb @ lg.ad(Ji) + lg.ad(Ji).T @ Gb )
-        #             C2 = Ji.dot( Gb @ lg.ad(Jj) )
-        #             for k in range(idx):
-        #                 Jk = Jset[idx,:,k]
-        #                 C[i,j] += C1.dot(jVel[k]*Jk)
-        #                 if(k>j):
-        #                     C[i,j] += C2.dot(jVel[k]*Jk)
-        #                 else:
-        #                     C[i,j] -= C2.dot(jVel[k]*Jk)
-
-        # C = 0.5*C   
-        # return C
     
         for i in range(self.num_joints):
             for j in range(self.num_joints):
@@ -189,20 +165,28 @@ class ChunRobot:
             Jb = self.jacobian_body(jAng, idx)
             g_torque = g_torque -(Jb.T @ g_wrench)
         return g_torque
-    
-    
+
+
     def inverse_dynamics(self, jAng, jVel, jAcc, Fext, grav=None):
-        """ Compute the inverse dynamics of the robot given joint angles, velocity, and acceleration
+        """ Compute the inverse dynamics of the robot given joint angles, velocity, and acceleration,
+            external force Fext is wrench applied to end effector, desscribed in end effector frame
             returns n x 1 joint torque vector """
-        TwistInLinkCsys = np.zeros(6,self.num_joints)
+        
+        # Calculate necessary variables in one loop
+        Tset = np.array( [np.eye(4,4)]*(self.num_joints+1) )
+        TwistInLinkCsys = np.array([np.zeros(6)]*self.num_joints) 
+        T = np.eye(4,4)
         for i in range(self.num_joints):
             xi = self.twist_set[i]
             Mi = self.init_tf_set[i,:,:]
+            T = T @ lg.Exp(xi, jAng[i])
+            Tset[i,:,:] = T @ Mi
             TwistInLinkCsys[i] = lg.Ad(lg.InvTrans(Mi), xi)
+        Tset[self.num_joints,:,:] = T @ self.init_tf_set[self.num_joints,:,:]
 
-        # Forward iteration
-        V = np.zeros(6,self.num_joints)
-        Vdot = np.zeros(6,self.num_joints)
+        # Forward iteration - For twists, Ad(T_(i-1 to i))*xi_i-1 = xi_i
+        V = np.zeros((6,self.num_joints))
+        Vdot = np.zeros((6,self.num_joints))
 
         V[:,0] = TwistInLinkCsys[0]*jVel[0]
         if(grav is None):
@@ -212,36 +196,24 @@ class ChunRobot:
 
         for i in range(1,self.num_joints):
             xi = TwistInLinkCsys[i]
-            th = jAng[i]
-            dth = jVel[i]
-            ddth = jAcc[i]
+            T = lg.InvTrans(Tset[i,:,:]) @ Tset[i-1,:,:]
+            V[:,i] = xi*jVel[i] + lg.Ad(T, V[:,i-1])
+            Vdot[:,i] = xi*jAcc[i] + lg.Ad(T, Vdot[:,i-1]) + jVel[i]*lg.ad(V[:,i], xi)
 
-            Mi = self.init_tf_set[i,:,:]
-            Miprev = self.init_tf_set[i-1,:,:]
-            T = lg.Exp(-xi,th) @ lg.InvTrans(Mi) @ Miprev
-            V[:,i] = xi*dth + lg.Ad(T, V[:,i-1])
-            Vdot[:,i] = xi*ddth + lg.Ad(T, Vdot[:,i-1]) + dth*lg.ad(V[:,i], xi)
-
-        # Backward iteration
-        F = np.zeros(6,self.num_joints+1)
-        F[:,self.num_joints] = -Fext
+        # Backward iteration - For wrenches, Transpose(Ad(T_(i to i+1)))*tau_i+1 = tau_i
+        F = np.zeros((6,self.num_joints+1))
         Tau = np.zeros(self.num_joints)
+
+        F[:,self.num_joints] = -Fext
 
         for i in range(self.num_joints-1, -1, -1):
             Gi = self.inertia_set[i,:,:]
-            Mi = self.init_tf_set[i,:,:]
-            Minext = self.init_tf_set[i+1,:,:]
-                
-            if(i==self.num_joints-1):
-                T = lg.InvTrans(Minext) @ Mi
-            else:
-                th = jAng[i+1]
-                xi = TwistInLinkCsys[i+1]
-                T = lg.Exp(-xi,th) @ lg.InvTrans(Minext) @ Mi
+            xi = TwistInLinkCsys[i]
+            T = lg.InvTrans(Tset[i+1,:,:]) @ Tset[i,:,:]
             F[:,i] = Gi @ Vdot[:,i] - lg.dad(V[:,i], (Gi @ V[:,i])) + lg.dAd(T, F[:,i+1])
-            Tau[i] = np.dot(F[:,i], TwistInLinkCsys[:,i])
+            Tau[i] = np.dot(F[:,i], xi)
         return Tau
-    
+
 
     def coriolis_torque(self, jAng, jVel):
         """ Compute the Coriolis torque of the robot given joint angle and velocity 
@@ -271,3 +243,57 @@ class ChunRobot:
         jAcc = np.linalg.solve(M, tau + Jb.T @ Fext - C - G)
         return jAcc
 
+
+
+
+
+    # def inverse_dynamics(self, jAng, jVel, jAcc, Fext, grav=None):
+    #     """ Compute the inverse dynamics of the robot given joint angles, velocity, and acceleration
+    #         returns n x 1 joint torque vector """
+    #     TwistInLinkCsys = np.zeros( (self.num_joints,6) )
+    #     for i in range(self.num_joints):
+    #         xi = self.twist_set[i]
+    #         Mi = self.init_tf_set[i,:,:]
+    #         TwistInLinkCsys[i] = lg.Ad(lg.InvTrans(Mi), xi)
+
+    #     # Forward iteration
+    #     V = np.zeros((6,self.num_joints))
+    #     Vdot = np.zeros((6,self.num_joints))
+
+    #     V[:,0] = TwistInLinkCsys[0]*jVel[0]
+    #     if(grav is None):
+    #         Vdot[:,0] = TwistInLinkCsys[0]*jAcc[0] - self.gravity
+    #     else:
+    #         Vdot[:,0] = TwistInLinkCsys[0]*jAcc[0] - grav
+
+    #     for i in range(1,self.num_joints):
+    #         xi = TwistInLinkCsys[i]
+    #         th = jAng[i]
+    #         dth = jVel[i]
+    #         ddth = jAcc[i]
+
+    #         Mi = self.init_tf_set[i,:,:]
+    #         Miprev = self.init_tf_set[i-1,:,:]
+    #         T = lg.Exp(-xi,th) @ lg.InvTrans(Mi) @ Miprev
+    #         V[:,i] = xi*dth + lg.Ad(T, V[:,i-1])
+    #         Vdot[:,i] = xi*ddth + lg.Ad(T, Vdot[:,i-1]) + dth*lg.ad(V[:,i], xi)
+
+    #     # Backward iteration
+    #     F = np.zeros((6,self.num_joints+1))
+    #     F[:,self.num_joints] = -Fext
+    #     Tau = np.zeros(self.num_joints)
+
+    #     for i in range(self.num_joints-1, -1, -1):
+    #         Gi = self.inertia_set[i,:,:]
+    #         Mi = self.init_tf_set[i,:,:]
+    #         Minext = self.init_tf_set[i+1,:,:]
+                
+    #         if(i==self.num_joints-1):
+    #             T = lg.InvTrans(Minext) @ Mi
+    #         else:
+    #             th = jAng[i+1]
+    #             xi = TwistInLinkCsys[i+1]
+    #             T = lg.Exp(-xi,th) @ lg.InvTrans(Minext) @ Mi
+    #         F[:,i] = Gi @ Vdot[:,i] - lg.dad(V[:,i], (Gi @ V[:,i])) + lg.dAd(T, F[:,i+1])
+    #         Tau[i] = np.dot(F[:,i], TwistInLinkCsys[i])
+    #     return Tau
